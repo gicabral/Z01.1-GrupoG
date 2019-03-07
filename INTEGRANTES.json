@@ -12,7 +12,7 @@
   "aluno-3": {
     "nome": {"Gabriela Iannini Caruso"},
     "email-insper": {"gabrielaic@al.insper.edu.br"},
-    "user-github": {"gabicaruso"},
+    "user-github": "gabicaruso"},
   },
   "aluno-4": {
     "nome": {"Beatriz Mie Kotsubo Kuwabara"},
@@ -23,6 +23,6 @@
     "nome": {"Mayra Peter da Rocha Loures"},
     "email-insper": {"mayraprl@al.insper.edu.br"},
     "user-github": {"mayrapeter"}
-  }
+  },
 
 }
