@@ -1,3 +1,4 @@
+
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
@@ -11,6 +12,7 @@ end entity;
 
 architecture arch of Mux16 is
 begin
+	q <= (not sel and a) or (sel and b ); 
 
 
 end architecture;
