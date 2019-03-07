@@ -1,8 +1,8 @@
 {
   "aluno-1": {
-    "nome": {Giovanna Sardella Cabral},
-    "email-insper": {giovannasc@al.insper.edu.br},
-    "user-github": {gicabral}
+    "nome": {"Giovanna Sardella Cabral"},
+    "email-insper": {"giovannasc@al.insper.edu.br"},
+    "user-github": {"gicabral"}
   },
   "aluno-2": {
     "nome": {"Luiza"},
@@ -10,23 +10,19 @@
     "user-github": {"luizasilveira"}
   },
   "aluno-3": {
-    "nome": {Gabriela Iannini Caruso},
-    "email-insper": {gabrielaic@al.insper.edu.br},
-    "user-github": gabicaruso},
+    "nome": {"Gabriela Iannini Caruso"},
+    "email-insper": {"gabrielaic@al.insper.edu.br"},
+    "user-github": "gabicaruso"},
   },
   "aluno-4": {
-    "nome": {Beatriz Mie Kotsubo Kuwabara},
-    "email-insper": {beatrizmkk@al.insper.edu.br},
-    "user-github": {beatrizmie}
+    "nome": {"Beatriz Mie Kotsubo Kuwabara"},
+    "email-insper": {"beatrizmkk@al.insper.edu.br"},
+    "user-github": {"beatrizmie"}
   },
   "aluno-5": {
-    "nome": {Mayra Peter da Rocha Loures},
-    "email-insper": {mayraprl@al.insper.edu.br},
-    "user-github": {mayrapeter}
+    "nome": {"Mayra Peter da Rocha Loures"},
+    "email-insper": {"mayraprl@al.insper.edu.br"},
+    "user-github": {"mayrapeter"}
   },
-  "aluno-6": {
-    "nome": {},
-    "email-insper": {},
-    "user-github": {}
-  }
+
 }
