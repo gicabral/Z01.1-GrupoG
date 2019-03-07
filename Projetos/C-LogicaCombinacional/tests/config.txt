@@ -8,7 +8,7 @@
 #                                    #
 ######################################
 
-#nand.vhd
+nand.vhd
 #And16.vhd
 #Not16.vhd
 #Or8Way.vhd
