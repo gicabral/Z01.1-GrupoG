@@ -8,8 +8,9 @@ entity Or16 is
 			q:   out STD_LOGIC_VECTOR(15 downto 0));
 end entity;
 
-architecture arch of Or16 is
+architecture rtl of Or16 is
 begin
+	q <= a or b;
 
 
-end architecture;
+end rtl;
