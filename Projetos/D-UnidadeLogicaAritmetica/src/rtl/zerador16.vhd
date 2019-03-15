@@ -19,7 +19,7 @@ architecture rtl of zerador16 is
   -- utilizados nesse modulo.
 
 begin 
-process (z,y)
+process (z,y,a)
 begin -- process
   -- Implementação vem aqui!
   if (z = '1') then

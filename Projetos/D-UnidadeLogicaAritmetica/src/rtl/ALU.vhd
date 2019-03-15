@@ -97,5 +97,6 @@ architecture  rtl OF alu is
 
 begin
   -- Implementação vem aqui!
+  
 
 end architecture;
