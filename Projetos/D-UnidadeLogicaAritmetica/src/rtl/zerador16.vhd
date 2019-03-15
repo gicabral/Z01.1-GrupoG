@@ -19,15 +19,23 @@ architecture rtl of zerador16 is
   -- utilizados nesse modulo.
 
 begin 
-process (z,y,a)
+process (z,a)
 begin -- process
   -- Implementação vem aqui!
-  if (z = '1') then
-  	y <= (others => '0');
-  elsif (z = '0') then
-  	y <= a;
-  end if;		
+	if (z = '1') then
+	 	y <= (others => '0');
+	elsif (z = '0') then
+	  	y <= a;
+	end if;		
 
 end process;
 
 end architecture;
+
+-- begin 
+--	y <= '0' when z = '1' else
+--	a;
+
+-- end architecture;
+
+
