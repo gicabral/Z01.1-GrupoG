@@ -1,0 +1,49 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity shift is
+	port ( 
+			a:    in  STD_LOGIC_VECTOR(15 downto 0);   
+			side:  in  std_logic;                       
+			tam: in  std_logic_vector(3 downto 0);    
+			q:    out STD_LOGIC_VECTOR(15 downto 0)
+		); 
+end entity;
+
+architecture rtl of shift is
+begin
+
+	q <= 	a(14 downto 0) & a(15) when side='0' and tam="0001" else
+			a(13 downto 0) & a(15 downto 14) when side='0' and tam="0010" else
+			a(12 downto 0) & a(15 downto 13) when side='0' and tam="0011" else
+			a(11 downto 0) & a(15 downto 12) when side='0' and tam="0100" else
+			a(10 downto 0) & a(15 downto 11) when side='0' and tam="0101" else
+			a(9 downto 0) & a(15 downto 10) when side='0' and tam="0110" else
+			a(8 downto 0) & a(15 downto 9) when side='0' and tam="0111" else
+			a(7 downto 0) & a(15 downto 8) when side='0' and tam="1000" else
+			a(6 downto 0) & a(15 downto 7) when side='0' and tam="1001" else
+			a(5 downto 0) & a(15 downto 6) when side='0' and tam="1010" else
+			a(4 downto 0) & a(15 downto 5) when side='0' and tam="1011" else
+			a(3 downto 0) & a(15 downto 4) when side='0' and tam="1100" else
+			a(2 downto 0) & a(15 downto 3) when side='0' and tam="1101" else
+			a(1 downto 0) & a(15 downto 2) when side='0' and tam="1110" else
+			a(0) & a(15 downto 1) when side='0' and tam="1111" else
+			a when side='0' and tam="0000" else
+			a when side='1' and tam="0000" else
+	   		a(0) & a(15 downto 1) when side='1' and tam="0001" else
+	   		a(1 downto 0) & a(15 downto 2) when side='1' and tam="0010" else
+	   		a(2 downto 0) & a(15 downto 3) when side='1' and tam="0011" else
+			a(3 downto 0) & a(15 downto 4) when side='1' and tam="0100" else
+			a(4 downto 0) & a(15 downto 5) when side='1' and tam="0101" else
+			a(5 downto 0) & a(15 downto 6) when side='1' and tam="0110" else
+			a(6 downto 0) & a(15 downto 7) when side='1' and tam="0111" else
+			a(7 downto 0) & a(15 downto 8) when side='1' and tam="1000" else
+			a(8 downto 0) & a(15 downto 9) when side='1' and tam="1001" else
+			a(9 downto 0) & a(15 downto 10) when side='1' and tam="1010" else
+			a(10 downto 0) & a(15 downto 11) when side='1' and tam="1011" else
+			a(11 downto 0) & a(15 downto 12) when side='1' and tam="1100" else
+			a(12 downto 0) & a(15 downto 13) when side='1' and tam="1101" else
+			a(13 downto 0) & a(15 downto 14) when side='1' and tam="1110" else
+			a(14 downto 0) & a(15) when side='1' and tam="1111";
+
+end architecture;
