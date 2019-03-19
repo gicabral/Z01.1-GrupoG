@@ -16,6 +16,7 @@ entity Add16 is
 	);
 end entity;
 
+
 architecture rtl of Add16 is
   -- Aqui declaramos sinais (fios auxiliares)
   -- e componentes (outros módulos) que serao
