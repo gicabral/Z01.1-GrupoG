@@ -20,7 +20,7 @@ entity PC is
         load      : in  STD_LOGIC;
         reset     : in  STD_LOGIC;
         input     : in  STD_LOGIC_VECTOR(15 downto 0);
-        output    : out STD_LOGIC_VECTOR(15 downto 0)
+        output    : out STD_LOGIC_VECTOR(15 downto 0) := "0000000000000000"
     );
 end entity;
 
@@ -29,8 +29,31 @@ architecture arch of PC is
   -- e componentes (outros módulos) que serao
   -- utilizados nesse modulo.
 
+  component Inc16 is
+  port(
+    a   :  in STD_LOGIC_VECTOR(15 downto 0);
+    q   : out STD_LOGIC_VECTOR(15 downto 0)
+  );
+  end component;
+SIGNAL saida, saida_antes : STD_LOGIC_VECTOR(15 downto 0) := "0000000000000000";
 
 begin
+
+  inc: Inc16 port map (saida, saida_antes);
+  output <= saida;
+
+  process(clock)
+    begin
+    if (rising_edge(clock)) then
+      if (reset = '1')  then
+        saida <= "0000000000000000";
+      elsif (load = '1') then
+        saida <= input;
+      elsif (increment = '1') then
+        saida <= saida_antes;
+      end if;
+    end if;
+  end process;
 
 
 end architecture;
