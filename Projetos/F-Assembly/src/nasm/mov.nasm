@@ -10,4 +10,24 @@
 ; RAM[1] = RAM[0]
 ; RAM[0] = temp
 ; RAM[3] = 1
+
 ; ####################################################################
+
+
+leaw $1, %A
+movw (%A), %D
+leaw $0, %A
+movw (%A), %S
+
+movw %D, (%A)
+leaw $1, %A
+movw %S, (%A)
+
+
+leaw $1, %A
+movw %A, %S
+leaw $3, %A
+movw %S, (%A)
+
+
+
