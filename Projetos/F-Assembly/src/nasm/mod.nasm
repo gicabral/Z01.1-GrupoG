@@ -1,8 +1,8 @@
-; ####################################################################
 ; Arquivo: Mod.nasm
 ; Curso: Elementos de Sistemas
 ; Criado por: Luciano Soares
 ; Data: 27/03/2017
+
 ;
 ; Divide o número posicionado na RAM[1] pelo número posicionado no RAM[2] e armazena o resultado do resto da divisao na RAM[0].
 ; ####################################################################
@@ -39,3 +39,7 @@ LOOP:
 ; Guardar S (resto) em RAM[0].
 leaw $0, %A
 movw %S, (%A)
+
+
+
+
