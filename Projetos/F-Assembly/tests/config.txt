@@ -4,6 +4,8 @@
 #abs 2 1000
 #add 1 1000
 div  2 10000
+#add 1 1000
+#div  2 10000
 #factorial 2 10000
 #max 2 10000
 #mod 2 10000
@@ -11,3 +13,10 @@ div  2 10000
 #mult 1 10000
 #pow 2 10000
 #sub 1 1000
+
+# conceito B
+
+#isEven 2 1000
+#palindromo 2 1000
+#stringLength 2 2000
+
