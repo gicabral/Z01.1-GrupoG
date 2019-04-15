@@ -39,4 +39,3 @@ END:
 ; Guardar S (resto) em RAM[0].
 leaw $0, %A
 movw %S, (%A)
-

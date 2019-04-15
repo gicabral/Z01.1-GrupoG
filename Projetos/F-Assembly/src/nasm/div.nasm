@@ -43,3 +43,4 @@ END:
 leaw $3, %A
 movw %S, (%A)
 
+; divisao para numeros inteiros positivos

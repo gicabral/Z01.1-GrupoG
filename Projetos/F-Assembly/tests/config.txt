@@ -1,7 +1,8 @@
 # nome | quantidade de testes | us de execucao
 # us -> clock = /20
 
-#abs 2 1000
+
+
 #add 1 1000
 div  2 10000
 #add 1 1000
@@ -15,8 +16,9 @@ div  2 10000
 #sub 1 1000
 
 # conceito B
+#sub 1 1000
 
+# conceito B
 #isEven 2 1000
 #palindromo 2 1000
 #stringLength 2 2000
-
