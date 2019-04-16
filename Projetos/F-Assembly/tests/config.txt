@@ -21,4 +21,4 @@ pow 2 10000
 # conceito B
 #isEven 2 1000
 #palindromo 2 1000
-#stringLength 2 2000
+stringLength 2 2000
