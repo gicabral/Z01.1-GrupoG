@@ -10,16 +10,16 @@
 ; Divisao entre numeros inteiros positivos
 ; ####################################################################
 
-; S = RAM[1]
+; S = RAM[0]
 leaw $R0, %A
 movw (%A), %S
 
 LOOP:
-    ; S = S - RAM[2], ou seja, S é o resto.
+    ; S = S - RAM[1], ou seja, S é o resto.
 	leaw $R1, %A
 	subw %S, (%A), %S
 
-    ; Incrementando RAM[3]
+    ; Incrementando RAM[2]
     leaw $R2, %A
     movw (%A), %D
     incw %D
