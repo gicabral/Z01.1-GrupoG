@@ -41,7 +41,9 @@ component Register16 is
     output: out STD_LOGIC_VECTOR(15 downto 0) := "0000000000000000"
   );
   end component;
-SIGNAL saida,q_mux0, q_mux1, q_mux2, saida_inc: std_logic_vector(15 downto 0) := "0000000000000000";
+
+SIGNAL saida,q_mux0, q_mux1, q_mux2, saida_inc: std_logic_vector(15 downto 0) ;
+
 begin
   inc : inc16 port map(saida, saida_inc);
   mux0 : Mux16 port map(saida, saida_inc, increment, q_mux0);
