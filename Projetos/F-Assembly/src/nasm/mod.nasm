@@ -27,7 +27,7 @@ LOOP:
 	subw %S, (%A), %D
 
     ; Pular se D < 0.
-	leaw $16, %A
+	leaw $END, %A
 	jl %D
     nop
 
@@ -35,11 +35,7 @@ LOOP:
 	leaw $LOOP, %A
 	jmp
     nop
-
+END: 
 ; Guardar S (resto) em RAM[0].
 leaw $0, %A
 movw %S, (%A)
-
-
-
-
