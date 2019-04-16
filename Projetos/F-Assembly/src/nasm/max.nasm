@@ -9,3 +9,35 @@
 ; ou seja, o maior valor que estiver, ou em R0 ou R1 sera copiado para R2
 ; Estamos considerando número inteiros
 
+leaw $R0, %A
+movw (%A), %D
+
+leaw $R1, %A
+movw (%A), %S
+
+subw %S, %D, %S
+
+leaw $MAX1, %A
+jg %S
+nop
+
+leaw $MAX2, %A
+jmp
+nop
+
+MAX1:
+	leaw $R1, %A
+	movw (%A), %S
+	leaw $R2, %A
+	movw %S, (%A)
+	leaw $END, %A
+	jmp
+	nop
+
+MAX2:
+	leaw $R0, %A
+	movw (%A), %D
+	leaw $R2, %A
+	movw %D, (%A)
+
+END:
