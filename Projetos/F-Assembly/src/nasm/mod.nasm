@@ -2,10 +2,9 @@
 ; Curso: Elementos de Sistemas
 ; Criado por: Luciano Soares
 ; Data: 27/03/2017
-
 ;
-; Divide o número posicionado na RAM[1] pelo número posicionado no RAM[2] e armazena o resultado do resto da divisao na RAM[0].
-; ####################################################################
+;
+;  Encontra o resto da divisão entre RAM[2] e RAM[1] e o salva em RAM[0].
 
 ; S = RAM[1]
 leaw $R1, %A
