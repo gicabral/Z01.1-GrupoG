@@ -50,7 +50,7 @@ script:
   - python Projetos/D-UnidadeLogicaAritmetica/testeULA.py
   - python Projetos/E-LogicaSequencial/testeLogicaSequencial.py
   - python Projetos/F-Assembly/testeAssembly.py
-  - python Projetos/G-CPU/testeHW.py lib.tb_memoryio.all
-  - python Projetos/G-CPU/testeHW.py lib.tb_controlunit.all
-  - python Projetos/G-CPU/testeAssemblyMyCPU.py
+  - python Projetos/G-Computador/testeHW.py lib.tb_memoryio.all
+  - python Projetos/G-Computador/testeHW.py lib.tb_controlunit.all
+  - python Projetos/G-Computador/testeAssemblyMyCPU.py
 
