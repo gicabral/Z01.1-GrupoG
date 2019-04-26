@@ -24,7 +24,6 @@ end entity;
 
 architecture arch of ControlUnit is
 
-
 begin
 
 	muxALUI_A <= not(instruction(17));
