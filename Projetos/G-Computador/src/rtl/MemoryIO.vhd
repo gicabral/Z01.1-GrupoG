@@ -143,7 +143,7 @@ begin
 
     dmux: DMux4Way port map (LOAD, seletordmux, dmux_out1, dmux_out2, dmux_out3, dmux_n);
 
-    ram16: RAM16K port map (CLK_FAST, ADDRESS(13 downto 0), INPUT(15 downto 0), dmux_out1, mux_in1);
+    ram: RAM16K port map (CLK_FAST, ADDRESS(13 downto 0), INPUT(15 downto 0), dmux_out1, mux_in1);
 
     register197: Register16 port map (CLK_SLOW, INPUT(15 downto 0), dmux_out3, SaidaReg);
 
