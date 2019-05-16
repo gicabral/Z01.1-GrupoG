@@ -18,6 +18,9 @@ entity ControlUnit is
                                                                      -- reg. A e Mem. RAM para ALU
 		muxAMD_ALU                  : out STD_LOGIC;                     -- mux que seleciona entre reg.
                                                                      -- A  e Mem. RAM para ALU
+        muxE_AlU                    : out STD_LOGIC;
+
+
 		muxSD_ALU                   : out STD_LOGIC;                     -- mux que seleciona entre reg. S
 		zx, nx, zy, ny, f, no       : out STD_LOGIC;                     -- sinais de controle da ALU
 		loadA, loadD, loadS, loadM, loadPC : out STD_LOGIC               -- sinais de load do reg. A,
