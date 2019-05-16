@@ -9,6 +9,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.LinkedList;
 
 /**
  * Encapsula o código de leitura. Carrega as instruções na linguagem assembly,
@@ -47,9 +48,18 @@ public class Parser {
      * entrada o método retorna "Falso", senão retorna "Verdadeiro".
      * @return Verdadeiro se ainda há instruções, Falso se as instruções terminaram.
      */
-    public Boolean advance() {
+    public Boolean advance() throws IOException {
         // usar o fileReader.readLine();
-    	return null;
+        String  str = fileReader.readLine();
+        while( str !=null) {
+            if (str.startsWith(";") == false && !str.trim().equals("")){
+                currentCommand = str.replaceAll(";.*$", "").trim();
+                return(true);
+            }
+            str = fileReader.readLine();
+        }
+        return(false);
+
     }
 
     /**
@@ -57,7 +67,7 @@ public class Parser {
      * @return a instrução atual para ser analilisada
      */
     public String command() {
-    	return null;
+    	return currentCommand;
     }
 
     /**
@@ -69,7 +79,22 @@ public class Parser {
      * @return o tipo da instrução.
      */
     public CommandType commandType(String command) {
-    	return null;
+
+        char[] a = command.toCharArray();
+        String[] words = command.split(" ");
+        for(char c:a){
+            if (c == ':'){
+                return (CommandType.L_COMMAND);
+            }
+        }
+        for(String c:words){
+            if (c.equals("leaw")){
+                return (CommandType.A_COMMAND);
+            }
+
+        }
+
+        return (CommandType.C_COMMAND);
     }
 
     /**
@@ -79,7 +104,16 @@ public class Parser {
      * @return somente o símbolo ou o valor número da instrução.
      */
     public String symbol(String command) {
-    	return null;
+        if (commandType(command) == CommandType.A_COMMAND) {
+
+            int icomma = command.indexOf(",");
+            int idollarsign = command.indexOf("$");
+            command = command.substring(idollarsign + 1 , icomma);
+            return command;
+        }
+        else {
+            return "";
+        }
     }
 
     /**
@@ -89,7 +123,7 @@ public class Parser {
      * @return o símbolo da instrução (sem os dois pontos).
      */
     public String label(String command) {
-    	return null;
+        return (command.replaceAll(":", ""));
     }
 
     /**
@@ -99,7 +133,13 @@ public class Parser {
      * @return um vetor de string contento os tokens da instrução (as partes do comando).
      */
     public String[] instruction(String command) {
-    	return null;
+
+        command = command.trim();
+        command = command.replaceAll(",", " ");
+        String commands[] = command.split(" ");
+
+        return commands;
+
     }
 
     // fecha o arquivo de leitura
