@@ -31,8 +31,7 @@ public class Assemble {
         this.debug = debug;
         inputFile  = inFile;
         hackFile   = new File(outFileHack);                      // Cria arquivo de saída .hack
-        outHACK    = new PrintWriter(new FileWriter(hackFile));  // Cria saída do print para
-                                                                 // o arquivo hackfile
+        outHACK    = new PrintWriter(new FileWriter(hackFile));  // Cria saída do print para o arquivo hackfile
         table      = new SymbolTable();                          // Cria e inicializa a tabela de simbolos
 
     }
@@ -41,16 +40,57 @@ public class Assemble {
      * primeiro passo para a construção da tabela de símbolos de marcadores (labels)
      * varre o código em busca de Símbolos novos Labels e Endereços de memórias
      * e atualiza a tabela de símbolos com os endereços.
-     *
      * Dependencia : Parser, SymbolTable
      */
     public SymbolTable fillSymbolTable() throws FileNotFoundException, IOException {
-        Parser parser = new Parser(inputFile);
-        while (parser.advance()){
 
+        Parser parser_label = new Parser(inputFile);
+        int linha = 0;
+
+        while (parser_label.advance()){
+
+            if (parser_label.commandType(parser_label.command()) == Parser.CommandType.L_COMMAND){
+
+                String label = parser_label.label(parser_label.command());
+
+                if (!table.contains(label)){
+                    table.addEntry(label, linha);
+                }
+            }
+
+            else{
+                linha ++;
+            }
+        }
+
+        Parser parser_symbol = new Parser(inputFile);
+        int linha2 = 16;
+
+        while (parser_symbol.advance()) {
+            if (parser_symbol.commandType(parser_symbol.command()).equals(Parser.CommandType.A_COMMAND)) {
+
+                String symbol = parser_symbol.symbol(parser_symbol.command());
+                boolean n = true;
+
+                try {
+                    Double num = Double.parseDouble(symbol);
+                }
+
+                catch (NumberFormatException e) {
+                    n = false;
+                }
+
+                if (!n) {
+                    if (!table.contains(symbol)) {
+                        table.addEntry(symbol, linha2);
+                        linha2 ++;
+                    }
+                }
+            }
         }
 
         return table;
+
     }
 
     /**
@@ -63,6 +103,8 @@ public class Assemble {
     public void generateMachineCode() throws FileNotFoundException, IOException{
         Parser parser = new Parser(inputFile);  // abre o arquivo e aponta para o começo
         String instruction  = null;
+        String last_bit;
+        String calculo, destino, jump, simbolo, binario;
 
         /**
          * Aqui devemos varrer o código nasm linha a linha
@@ -70,11 +112,34 @@ public class Assemble {
          * de instrução válida do nasm
          */
         while (parser.advance()){
+            String[] c = parser.instruction(parser.command());
             switch (parser.commandType(parser.command())){
                 case C_COMMAND:
+
+                    last_bit = "10";
+                    destino = Code.dest(c);
+                    calculo = Code.comp(c);
+                    jump = Code.jump(c);
+                    instruction = last_bit + calculo + destino + jump;
                     break;
+
                 case A_COMMAND:
+
+                    last_bit = "00";
+                    simbolo = parser.symbol(parser.command());
+
+                    if (table.contains(simbolo)) {
+                        int symbol_value = table.getAddress(simbolo);
+                        binario = Code.toBinary(Integer.toString(symbol_value));
+                    }
+
+                    else {
+                        binario = Code.toBinary(simbolo);
+                    }
+                    instruction = last_bit + binario;
+
                     break;
+
                 default:
                     continue;
             }
@@ -82,7 +147,6 @@ public class Assemble {
             if(outHACK!=null) {
                 outHACK.println(instruction);
             }
-            instruction = null;
         }
 
     }
