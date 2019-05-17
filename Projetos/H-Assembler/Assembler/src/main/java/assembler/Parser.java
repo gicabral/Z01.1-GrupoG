@@ -135,10 +135,11 @@ public class Parser {
     public String[] instruction(String command) {
 
         command = command.trim();
-        command = command.replaceAll(",", " ");
+        command = command.replaceAll(",", "");
         String commands[] = command.split(" ");
 
         return commands;
+        
 
     }
 
