@@ -9,7 +9,7 @@ entity MemoryIO is
      CLK_FAST : IN  STD_LOGIC;
      RST      : IN  STD_LOGIC;
 
-     -- RAM 16K oioioioioi
+     -- RAM 16K
      ADDRESS  : IN  STD_LOGIC_VECTOR (14 DOWNTO 0);
      INPUT    : IN  STD_LOGIC_VECTOR (15 DOWNTO 0);
      LOAD     : IN  STD_LOGIC ;
@@ -20,7 +20,7 @@ entity MemoryIO is
      LCD_D        : INOUT STD_LOGIC_VECTOR(15 downto 0);
      LCD_RD_N     : OUT   STD_LOGIC;
      LCD_RESET_N  : OUT   STD_LOGIC;
-     LCD_RS       : OUT   STD_LOGIC;  -- (DCx) 0 : reg, 1: command
+     LCD_RS       : OUT   STD_LOGIC;
      LCD_WR_N     : OUT   STD_LOGIC;
      LCD_ON       : OUT   STD_LOGIC := '1'; -- liga e desliga o LCD
      LCD_INIT_OK  : OUT   STD_LOGIC;
@@ -28,45 +28,51 @@ entity MemoryIO is
      -- I/Os
      SW  : in std_logic_vector(9 downto 0);
      LED : OUT std_logic_vector(9 downto 0)
+
+     DADO : in STD_LOGIC_VECTOR(3 DOWNTO 0);
+ 
+       -- Sinais de saída
+     A, B, C, D, E, F, G : out STD_LOGIC
+
     );
 end entity;
 
 
 ARCHITECTURE logic OF MemoryIO IS
-  --Declarando o componente Screen
-  component Screen is
-    PORT(
-      -- Sistema
-      CLK_FAST : IN  STD_LOGIC;
-      CLK_SLOW : IN  STD_LOGIC;
-      RST      : IN  STD_LOGIC;
 
-      -- interface
-      INPUT        : IN STD_LOGIC_VECTOR(15 downto 0);
-      LOAD         : IN  STD_LOGIC;
-      ADDRESS      : IN STD_LOGIC_VECTOR(13 downto 0);
-      LCD_INIT_OK  : OUT STD_LOGIC;
+component Screen is
 
-      -- LCD EXTERNAL I/OS
-      LCD_CS_N     : OUT   STD_LOGIC;
-      LCD_D        : INOUT STD_LOGIC_VECTOR(15 downto 0);
-      LCD_RD_N     : OUT   STD_LOGIC;
-      LCD_RESET_N  : OUT   STD_LOGIC;
-      LCD_RS       : OUT   STD_LOGIC; -- (DCx) 0 : reg, 1: command
-      LCD_WR_N     : OUT   STD_LOGIC
-    );
-  end component;
-  --Declarando o componente RAM16K
+   PORT(
+        --Display
+        INPUT        : IN  STD_LOGIC_VECTOR(15 downto 0);
+        LOAD         : IN  STD_LOGIC;
+        ADDRESS      : IN  STD_LOGIC_VECTOR(13 downto 0);
+        LCD_INIT_OK  : OUT STD_LOGIC;
+
+        -- Sistema
+        CLK_SLOW     : IN  STD_LOGIC;
+        CLK_FAST     : IN  STD_LOGIC;
+        RST          : IN  STD_LOGIC;
+        -- LCD EXTERNAL I/OS
+        LCD_CS_N     : OUT   STD_LOGIC;
+        LCD_D        : INOUT STD_LOGIC_VECTOR(15 downto 0);
+        LCD_RD_N     : OUT   STD_LOGIC;
+        LCD_RESET_N  : OUT   STD_LOGIC;
+        LCD_RS       : OUT   STD_LOGIC; -- (DCx) 0 : reg, 1: command
+        LCD_WR_N     : OUT   STD_LOGIC
+       );
+end component;
+
+
   component RAM16K is
     port  (
       clock   : IN STD_LOGIC;
       address : IN STD_LOGIC_VECTOR (13 DOWNTO 0);
       data    : IN STD_LOGIC_VECTOR (15 DOWNTO 0);
       wren    : IN STD_LOGIC;
-      q      : OUT STD_LOGIC_VECTOR (15 DOWNTO 0)
-    );
+      q      : OUT STD_LOGIC_VECTOR (15 DOWNTO 0));
   end component;
-  --Declarando o componente Mux4Way16
+
   component Mux4Way16 is
     Port (
       sel : in  STD_LOGIC_VECTOR ( 1 downto 0);
@@ -74,98 +80,132 @@ ARCHITECTURE logic OF MemoryIO IS
       b   : in  STD_LOGIC_VECTOR (15 downto 0);
       c   : in  STD_LOGIC_VECTOR (15 downto 0);
       d   : in  STD_LOGIC_VECTOR (15 downto 0);
-      q   : out STD_LOGIC_VECTOR (15 downto 0)
-    );
+      q   : out STD_LOGIC_VECTOR (15 downto 0));
   end component;
-  --Declarando o componente DMux4Way
+
   component DMux4Way is
-    Port(
+    port ( 
       a:   in  STD_LOGIC;
       sel: in  STD_LOGIC_VECTOR(1 downto 0);
       q0:  out STD_LOGIC;
       q1:  out STD_LOGIC;
       q2:  out STD_LOGIC;
-      q3:  out STD_LOGIC
-    );
+      q3:  out STD_LOGIC);
   end component;
-  --Declarando o componente Register16
+
   component Register16 is
-    port(
-      clock:   in STD_LOGIC;
-      input:   in STD_LOGIC_VECTOR(15 downto 0);
-      load:    in STD_LOGIC;
-      output: out STD_LOGIC_VECTOR(15 downto 0)
-    );
+  port(
+    clock:   in STD_LOGIC;
+    input:   in STD_LOGIC_VECTOR(15 downto 0);
+    load:    in STD_LOGIC;
+    output: out STD_LOGIC_VECTOR(15 downto 0)
+  );
   end component;
 
 
-signal sel1 : STD_LOGIC_VECTOR(1 downto 0):="00";
-signal sel2 : STD_LOGIC_VECTOR(1 downto 0):="00";
-signal muxSaida: STD_LOGIC_VECTOR(3 downto 0):=(others=>'0');
-signal ram16Saida: STD_LOGIC_VECTOR(15 downto 0):=(others=>'0');
-signal saidaReg16 : STD_LOGIC_VECTOR(15 downto 0):=(others=>'0');
-signal botoes : STD_LOGIC_VECTOR(15 downto 0):=(others=>'0');
-BEGIN
-    --Criando o Componente Screen
-    DISPLAY: Screen  port map (
+-----------------------------------
+-- Dicas de uso, screen e RAM16k --
+-----------------------------------
+
+--    DISPLAY: Screen  port map (
+--          RST         => RST,
+--          CLK_FAST    => CLK_FAST,
+--          CLK_SLOW    => CLK_SLOW,
+--          INPUT       =>
+--          LOAD        =>
+--          ADDRESS     =>
+--          LCD_INIT_OK => LCD_INIT_OK,
+--          LCD_CS_N    => LCD_CS_N ,
+--          LCD_D       => LCD_D,
+--          LCD_RD_N    => LCD_RD_N,
+--          LCD_RESET_N => LCD_RESET_N,
+--          LCD_RS      => LCD_RS,
+--          LCD_WR_N    => LCD_WR_N
+--    );
+
+
+--    RAM: RAM16K  PORT MAP(
+--         clock    => CLK_FAST,
+--         address  => 
+--         data     =>
+--         wren     =>
+--         q        =>
+--    );
+
+signal  dmux_out1, dmux_out2, dmux_out3, dmux_n: STD_LOGIC;
+signal SaidaReg     : STD_LOGIC_VECTOR(15 downto 0);
+signal  mux_in1, mux_n1, mux_n2, ram16_out, sw_in2 :STD_LOGIC_VECTOR(15 downto 0);
+signal  seletormux : STD_LOGIC_VECTOR(1 downto 0);
+signal seletordmux : STD_LOGIC_VECTOR(1 downto 0);
+
+
+signal S : STD_LOGIC_VECTOR(0 to 6);
+
+begin
+  
+  seletordmux <= "00" when ADDRESS <= "011111111111111" else
+    "01" when ADDRESS >= "100000000000000" and ADDRESS <= "101001010111111" else
+    "10" when ADDRESS = "101001011000000" ;
+
+
+    seletormux <= "00" when (ADDRESS = "101001011000001") else "01";
+
+    dmux: DMux4Way port map (LOAD, seletordmux, dmux_out1, dmux_out2, dmux_out3, dmux_n);
+
+    ram: RAM16K port map (CLK_FAST, ADDRESS(13 downto 0), INPUT(15 downto 0), dmux_out1, mux_in1);
+
+    register197: Register16 port map (CLK_SLOW, INPUT(15 downto 0), dmux_out3, SaidaReg);
+
+    --screenport: Screen port map (RST, CLK_FAST, CLK_SLOW, INPUT(15 downto 0), dmux_out2, ADDRESS(13 downto 0), LCD_INIT_OK, LCD_CS_N,
+    --LCD_D, LCD_RD_N, LCD_RESET_N, LCD_RS, LCD_WR_N);
+     DISPLAY: Screen  port map (
           RST         => RST,
           CLK_FAST    => CLK_FAST,
           CLK_SLOW    => CLK_SLOW,
-          INPUT       => INPUT(15 DOWNTO 0),
-          LOAD        => muxSaida(2),
+          INPUT       => INPUT,
+          LOAD        => dmux_out2,
           ADDRESS     => ADDRESS(13 downto 0),
           LCD_INIT_OK => LCD_INIT_OK,
-          LCD_CS_N    => LCD_CS_N,
+          LCD_CS_N    => LCD_CS_N ,
           LCD_D       => LCD_D,
           LCD_RD_N    => LCD_RD_N,
           LCD_RESET_N => LCD_RESET_N,
           LCD_RS      => LCD_RS,
           LCD_WR_N    => LCD_WR_N
     );
-    --Criando o Componente RAM16K
-    RAM: RAM16K  PORT MAP(
-         clock    => CLK_FAST,
-         address  => ADDRESS(13 DOWNTO 0),
-         data     => INPUT(15 DOWNTO 0),
-         wren     => muxSaida(0),
-         q        => ram16Saida
-    );
-    --Criando o Componente Register16
-    REG16: Register16 PORT MAP(
-      clock => CLK_SLOW,
-      input =>  INPUT(15 DOWNTO 0),
-      load  =>  muxSaida(1),
-      output => saidaReg16
-    );
-    --Criando o Componente DMux4Way
-    DMUX: DMux4Way PORT MAP(
-      a => LOAD,
-      sel =>sel1,
-      q0 => muxSaida(0),
-      q1 => muxSaida(1),
-      q2 => muxSaida(2),
-      q3 => muxSaida(3)
-    );
-    --Criando o Componente Mux4Way16
-    MUX: Mux4Way16 PORT Map(
-      sel => sel2,
-      a => botoes,
-      b => ram16Saida,
-      c => ram16Saida,
-      d => ram16Saida,
-      q => OUTPUT
-      );
 
-    --Criando o Seletor do DMux4Way
-    sel1 <= "00" when ADDRESS(14 downto 0) <= "011111111111111" else
-            "10" when ADDRESS(14 downto 0) <= "101001010111111" else
-            "01" when ADDRESS(14 downto 0) = "101001011000000";
-
-    --Criando o Seletor do Mux4Way16         
-    sel2 <= "01" when ADDRESS(14 downto 0) <= "011111111111111" else
-            "00";
+    mux: Mux4Way16 port map (seletormux, sw_in2, mux_in1, mux_n1, mux_n2, OUTPUT );
 
 
-    LED <= saidaReg16(9 downto 0);
-    botoes(9 downto 0) <= SW; 
+    with DADO select
+        S &lt;= "0000001" when "0000", -- '0'
+        "1001111" when "0001", -- '1'
+        "0010010" when "0010", -- '2'
+        "0000110" when "0011", -- '3'
+        "1001100" when "0100", -- '4'
+        "0100100" when "0101", -- '5'
+        "0100000" when "0110", -- '6'
+        "0001111" when "0111", -- '7'
+        "0000000" when "1000", -- '8'
+        "0000100" when "1001", -- '9'
+        "0001000" when "1010", -- 'A'
+        "1100000" when "1011", -- 'B'
+        "0110001" when "1100", -- 'C'
+        "1000010" when "1101", -- 'D'
+        "0110000" when "1110", -- 'E'
+        "0111000" when "1111", -- 'F'
+        "1111111" when others;
+
+    A &lt;= S(0);
+    B &lt;= S(1);
+    C &lt;= S(2);
+    D &lt;= S(3);
+    E &lt;= S(4);
+    F &lt;= S(5);
+    G &lt;= S(6);
+
+  LED(9 downto 0) <= SaidaReg(9 downto 0);
+  sw_in2(9 downto 0) <= SW(9 downto 0);
+
+
 END logic;
