@@ -5,6 +5,8 @@
 
 package assembler;
 
+import java.util.Arrays;
+
 /**
  * Traduz mnemônicos da linguagem assembly para códigos binários da arquitetura Z0.
  */
@@ -17,8 +19,14 @@ public class Code {
      * @return Opcode (String de 4 bits) com código em linguagem de máquina para a instrução.
      */
     public static String dest(String[] mnemnonic) {
-        if (mnemnonic.length == 2) {
-            if (mnemnonic[0].equals("incw") || mnemnonic[0].equals("decw") || mnemnonic[0].equals("notw") || mnemnonic[0].equals("negw")) {
+
+        if (mnemnonic.length == 1) {
+                return "0000";
+            }
+
+
+        else if (mnemnonic.length == 2) {
+            if (mnemnonic[0].equals("incw") || mnemnonic[0].equals("decw") || mnemnonic[0].equals("notw") || mnemnonic[0].equals("negw") ) {
                 switch (mnemnonic[1]) {
                     case "%A":
                         return "1000";
@@ -28,13 +36,13 @@ public class Code {
                         return "0010";
                     case "(%A)":
                         return "0001";
-                    default:
-                        return "0000";
                 }
             }
+
+
         }
 
-        if (mnemnonic.length == 3) {
+        else if (mnemnonic.length == 3) {
             if (mnemnonic[0].equals("movw")) {
                 switch (mnemnonic[2]) {
                     case "%A":
@@ -51,7 +59,7 @@ public class Code {
             }
         }
 
-        if (mnemnonic.length == 4) {
+        else if (mnemnonic.length == 4) {
             if (mnemnonic[0].equals("addw") || mnemnonic[0].equals("subw") || mnemnonic[0].equals("rsubw") || mnemnonic[0].equals("andw") || mnemnonic[0].equals("orw")) {
                 switch (mnemnonic[3]) {
                     case "%A":
@@ -76,10 +84,10 @@ public class Code {
 
                 }
             }
-        } else {
-            return "0000";
         }
-        return null;
+
+        //System.out.println(Arrays.toString(mnemnonic));
+        return "0000";
     }
 
 
@@ -93,7 +101,11 @@ public class Code {
          * @return Opcode (String de 7 bits) com código em linguagem de máquina para a instrução.
          */
     public static String comp(String[] mnemnonic) {
-        if (mnemnonic.length == 2) {
+        if (mnemnonic.length == 1) {
+                    return "000001100";
+                }
+
+                if (mnemnonic.length == 2) {
             if (mnemnonic[0].equals("incw")) {
                 switch (mnemnonic[1]) {
                     case "%A":
@@ -161,9 +173,16 @@ public class Code {
 
                     case "(%A)":
                         return "010110000";
+                    case "$1":
+                        return "000111111";
+                    case "$0":
+                        return "000101010";
+
+
                     default:
                         return "000000000";
                 }
+
             }
         }
 
@@ -222,7 +241,11 @@ public class Code {
                     default    : return "000000000";
                 }
             }
+        } else {
+            return "00000";
         }
+
+        System.out.println(Arrays.toString(mnemnonic));
         return null;
     }
 
