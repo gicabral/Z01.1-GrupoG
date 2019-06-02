@@ -2,13 +2,13 @@
 ## Entrega 
 ##--------------------
 
-1a-Add 1 400
-1b-Add 1 400
-1c-Div 1 4000
-2a-Calculadora 1 4000
-2b-Calculadora 1 4000
-2c-Calculadora 1 4000
-2d-Calculadora 1 4000
+#1a-Add 1 400
+#1b-Add 1 400
+#1c-Div 1 4000
+#2a-Calculadora 1 4000
+#2b-Calculadora 1 4000
+#2c-Calculadora 1 4000
+#2d-Calculadora 1 4000
 
 ###--------------------
 ### EXMPLOS: /srcExamples
@@ -16,11 +16,11 @@
 ###  - push/pop
 ###  - parser
 ###--------------------
-#SimplePushConst 1 300
-#SimplePushLocal 1 300
-#SimplePushTemp 1 300
-#SimplePushThat 1 300
-#SimplePushThis 1 300
+SimplePushConst 1 300
+SimplePushLocal 1 300
+SimplePushTemp 1 300
+SimplePushThat 1 300
+SimplePushThis 1 300
 #
 #SimplePopLocal 1 300
 #SimplePopPointer 1 300
