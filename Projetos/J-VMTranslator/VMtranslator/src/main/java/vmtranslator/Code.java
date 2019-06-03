@@ -45,30 +45,239 @@ public class Code {
 
         if(command.equals("add")) {
             commands.add(String.format("; %d - ADD", lineCode++));
+            commands.add("leaw $SP,%A");
+            commands.add("movw (%A),%A");
+            commands.add("decw %A");
+            commands.add("movw (%A),%D");
+            commands.add("decw %A");
+            commands.add("movw (%A),%S");
+            //commands.add("decw %A");
+            commands.add("addw %S, %D, %S");
+            commands.add("movw %S, (%A)"); // SP = penultima
+            commands.add("movw %A, %D");
+            commands.add("incw %D");
+            commands.add("leaw $SP,%A");
+            commands.add("movw %D,(%A)");
+
+
 
         } else if (command.equals("sub")) {
             commands.add(String.format("; %d - SUB", lineCode++));
+            commands.add("leaw $SP,%A");
+            commands.add("movw (%A),%A");
+            commands.add("decw %A");
+            commands.add("movw (%A),%D");
+            commands.add("decw %A");
+            commands.add("movw (%A),%S");
+            //commands.add("decw %A");
+            commands.add("subw %S, %D, %S");
+            commands.add("movw %S, (%A)"); // SP = penultima
+            commands.add("movw %A, %D");
+            commands.add("incw %D");
+            commands.add("leaw $SP,%A");
+            commands.add("movw %D,(%A)");
 
         } else if (command.equals("neg")) {
             commands.add(String.format("; %d - NEG", lineCode++));
+            commands.add("leaw $SP,%A");
+            commands.add("movw (%A),%A");
+            commands.add("decw %A");
+            commands.add("movw (%A),%D");
+            commands.add("negw %D");
+            commands.add("movw %D, (%A)"); // SP = penultima
+            commands.add("movw %A, %D");
+            commands.add("incw %D");
+            commands.add("leaw $SP,%A");
+            commands.add("movw %D,(%A)");
 
         } else if (command.equals("eq")) {
+            String uuid = UUID.randomUUID().toString();
+
             commands.add(String.format("; %d - EQ", lineCode++));
+            commands.add("leaw $SP,%A");
+            commands.add("movw (%A),%A");
+            commands.add("decw %A");
+            commands.add("movw (%A),%D");
+            commands.add("decw %A");
+            commands.add("movw (%A),%S");
+            commands.add("subw %S, %D, %S");
+
+            commands.add("leaw $VERDADE-"+uuid +",%A");
+            commands.add("je %S");
+            commands.add("nop");
+            commands.add("movw $0,%D");
+            commands.add("leaw $SP,%A");
+            commands.add("movw (%A),%A");
+            commands.add("decw %A");
+            commands.add("decw %A");
+            commands.add("movw %D,(%A)");
+            commands.add("movw %A, %D");
+            commands.add("incw %D");
+            commands.add("leaw $SP,%A");
+            commands.add("movw %D,(%A)");
+            commands.add("leaw $FINISH-"+uuid +",%A");
+            commands.add("jmp");
+            commands.add("nop");
+
+            commands.add("VERDADE-"+uuid +":");
+            commands.add("leaw $131071,%A");
+            commands.add("movw %A,%D");
+            commands.add("leaw $SP,%A");
+            commands.add("movw (%A),%A");
+            commands.add("decw %A");
+            commands.add("decw %A");
+            commands.add("movw %D,(%A)");
+            commands.add("movw %A, %D");
+            commands.add("incw %D");
+            commands.add("leaw $SP,%A");
+            commands.add("movw %D,(%A)");
+            commands.add("leaw $FINISH-"+uuid +",%A");
+            commands.add("jmp");
+            commands.add("nop");
+
+
+            commands.add("FINISH-"+uuid +":");
+
+
 
         } else if (command.equals("gt")) {
+            String uuid = UUID.randomUUID().toString();
             commands.add(String.format("; %d - GT", lineCode++));
+            commands.add("leaw $SP,%A");
+            commands.add("movw (%A),%A");
+            commands.add("decw %A");
+            commands.add("movw (%A),%D");
+            commands.add("decw %A");
+            commands.add("movw (%A),%S");
+            commands.add("subw %S, %D, %S");
+
+            commands.add("leaw $VERDADE-"+uuid +",%A");
+            commands.add("jg %S");
+            commands.add("nop");
+            commands.add("movw $0,%D");
+            commands.add("leaw $SP,%A");
+            commands.add("movw (%A),%A");
+            commands.add("decw %A");
+            commands.add("decw %A");
+            commands.add("movw %D,(%A)");
+            commands.add("movw %A, %D");
+            commands.add("incw %D");
+            commands.add("leaw $SP,%A");
+            commands.add("movw %D,(%A)");
+            commands.add("leaw $FINISH-"+uuid +",%A");
+            commands.add("jmp");
+            commands.add("nop");
+
+            commands.add("VERDADE-"+uuid +":");
+            commands.add("leaw $131071,%A");
+            commands.add("movw %A,%D");
+            commands.add("leaw $SP,%A");
+            commands.add("movw (%A),%A");
+            commands.add("decw %A");
+            commands.add("decw %A");
+            commands.add("movw %D,(%A)");
+            commands.add("movw %A, %D");
+            commands.add("incw %D");
+            commands.add("leaw $SP,%A");
+            commands.add("movw %D,(%A)");
+            commands.add("leaw $FINISH-"+uuid +",%A");
+            commands.add("jmp");
+            commands.add("nop");
+
+
+            commands.add("FINISH-"+uuid +":");
+
 
         } else if (command.equals("lt")) {
+
+            String uuid = UUID.randomUUID().toString();
             commands.add(String.format("; %d - LT", lineCode++));
+            commands.add("leaw $SP,%A");
+            commands.add("movw (%A),%A");
+            commands.add("decw %A");
+            commands.add("movw (%A),%D");
+            commands.add("decw %A");
+            commands.add("movw (%A),%S");
+            commands.add("subw %S, %D, %S");
+
+            commands.add("leaw $VERDADE-"+uuid +",%A");
+            commands.add("jl %S");
+            commands.add("nop");
+            commands.add("movw $0,%D");
+            commands.add("leaw $SP,%A");
+            commands.add("movw (%A),%A");
+            commands.add("decw %A");
+            commands.add("decw %A");
+            commands.add("movw %D,(%A)");
+            commands.add("movw %A, %D");
+            commands.add("incw %D");
+            commands.add("leaw $SP,%A");
+            commands.add("movw %D,(%A)");
+            commands.add("leaw $FINISH-"+uuid +",%A");
+            commands.add("jmp");
+            commands.add("nop");
+
+            commands.add("VERDADE-"+uuid +":");
+            commands.add("leaw $131071,%A");
+            commands.add("movw %A,%D");
+            commands.add("leaw $SP,%A");
+            commands.add("movw (%A),%A");
+            commands.add("decw %A");
+            commands.add("decw %A");
+            commands.add("movw %D,(%A)");
+            commands.add("movw %A, %D");
+            commands.add("incw %D");
+            commands.add("leaw $SP,%A");
+            commands.add("movw %D,(%A)");
+            commands.add("leaw $FINISH-"+uuid +",%A");
+            commands.add("jmp");
+            commands.add("nop");
+
+
+            commands.add("FINISH-"+uuid +":");
 
         } else if (command.equals("and")) {
             commands.add(String.format("; %d - AND", lineCode++));
+            commands.add("leaw $SP,%A");
+            commands.add("movw (%A),%A");
+            commands.add("decw %A");
+            commands.add("movw (%A),%D");
+            commands.add("decw %A");
+            commands.add("movw (%A),%S");
+            commands.add("andw %S, %D, %S");
+            commands.add("movw %S, (%A)");
+            commands.add("movw %A, %D");
+            commands.add("incw %D");
+            commands.add("leaw $SP,%A");
+            commands.add("movw %D,(%A)");
 
         } else if (command.equals("or")) {
             commands.add(String.format("; %d - OR", lineCode++));
+            commands.add("leaw $SP,%A");
+            commands.add("movw (%A),%A");
+            commands.add("decw %A");
+            commands.add("movw (%A),%D");
+            commands.add("decw %A");
+            commands.add("movw (%A),%S");
+            commands.add("orw %S, %D, %S");
+            commands.add("movw %S, (%A)");
+            commands.add("movw %A, %D");
+            commands.add("incw %D");
+            commands.add("leaw $SP,%A");
+            commands.add("movw %D,(%A)");
 
         } else if (command.equals("not")) {
             commands.add(String.format("; %d - NOT", lineCode++));
+            commands.add("leaw $SP,%A");
+            commands.add("movw (%A),%A");
+            commands.add("decw %A");
+            commands.add("movw (%A),%D");
+            commands.add("notw %D");
+            commands.add("movw %D, (%A)");
+            commands.add("movw %A, %D");
+            commands.add("incw %D");
+            commands.add("leaw $SP,%A");
+            commands.add("movw %D,(%A)");
 
         }
 
