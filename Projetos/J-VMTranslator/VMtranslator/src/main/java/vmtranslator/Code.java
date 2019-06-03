@@ -288,7 +288,7 @@ public class Code {
                 commands.add("movw %A,%D");
                 commands.add("leaw $0,%A");
                 commands.add("movw %D,(%A)");
-                
+
 
             } else if (segment.equals("pointer")) {
                 if(index==0) {
@@ -373,6 +373,9 @@ public class Code {
 
         List<String> commands = new ArrayList<String>();
         commands.add( "; Label (marcador)" );
+        commands.add(label + ":");
+
+
 
     }
 
@@ -385,6 +388,9 @@ public class Code {
 
         List<String> commands = new ArrayList<String>();
         commands.add(String.format("; %d - Goto Incondicional", lineCode++));
+        commands.add("leaw $" + label + ", %A");
+        commands.add("jmp");
+        commands.add("nop");
 
     }
 
@@ -397,6 +403,17 @@ public class Code {
 
         List<String> commands = new ArrayList<String>();
         commands.add(String.format("; %d - Goto Condicional", lineCode++));
+        commands.add("leaw $0, %A");
+        commands.add("movw (%A), %D");
+        commands.add("decw %D");
+        commands.add("movw %D, (%A)");
+        commands.add("movw (%A), %S");
+        commands.add("movw %S, %A");
+        commands.add("movw (%A), %D)");
+        commands.add("notw %D");
+        commands.add("leaw $" + label + ", %A");
+        commands.add("je %D");
+        commands.add("nop");
 
      }
 

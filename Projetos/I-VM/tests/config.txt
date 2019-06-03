@@ -16,11 +16,11 @@
 ###  - push/pop
 ###  - parser
 ###--------------------
-SimplePushConst 1 300
-SimplePushLocal 1 300
-SimplePushTemp 1 300
-SimplePushThat 1 300
-SimplePushThis 1 300
+#SimplePushConst 1 300
+#SimplePushLocal 1 300
+#SimplePushTemp 1 300
+#SimplePushThat 1 300
+#SimplePushThis 1 300
 #
 #SimplePopLocal 1 300
 #SimplePopPointer 1 300
@@ -38,9 +38,9 @@ SimplePushThis 1 300
 #SimplePushArg 1 300
 #
 #SimpleEq 3 300
-#SimpleGoto 1 300
+SimpleGoto 1 300
 #SimpleGt 3 300
-#SimpleIfGoto 1 300
+SimpleIfGoto 1 300
 #SimpleLt 1 300
 #
 #StackTest 1 3000
