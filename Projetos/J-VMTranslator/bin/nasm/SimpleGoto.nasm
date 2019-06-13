@@ -8,6 +8,12 @@ movw %S, (%A)
 incw %D
 leaw $SP,%A
 movw %D, (%A)
+; 1 - Goto Incondicional
+leaw $END2, %A
+jmp
+nop
+; Label (marcador)
+DUMMY:
 ; 2 - PUSH constant 3
 leaw $0, %A
 movw (%A), %D
@@ -18,6 +24,8 @@ movw %S, (%A)
 incw %D
 leaw $SP,%A
 movw %D, (%A)
+; Label (marcador)
+END2:
 ; 3 - POP temp 0
 leaw $0,%A 
 movw (%A),%D 

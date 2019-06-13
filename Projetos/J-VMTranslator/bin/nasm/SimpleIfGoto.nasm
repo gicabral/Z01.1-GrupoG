@@ -36,7 +36,7 @@ movw (%A),%D
 decw %A
 movw (%A),%S
 subw %S, %D, %S
-leaw $VERDADE-9e33dce4-828b-4f61-9d17-f65b14631b86,%A
+leaw $VERDADE-f3420f86-96af-47c1-9f8d-77c1432e63a2,%A
 je %S
 nop
 movw $0,%D
@@ -49,10 +49,10 @@ movw %A, %D
 incw %D
 leaw $SP,%A
 movw %D,(%A)
-leaw $FINISH-9e33dce4-828b-4f61-9d17-f65b14631b86,%A
+leaw $FINISH-f3420f86-96af-47c1-9f8d-77c1432e63a2,%A
 jmp
 nop
-VERDADE-9e33dce4-828b-4f61-9d17-f65b14631b86:
+VERDADE-f3420f86-96af-47c1-9f8d-77c1432e63a2:
 leaw $131071,%A
 movw %A,%D
 leaw $SP,%A
@@ -64,10 +64,24 @@ movw %A, %D
 incw %D
 leaw $SP,%A
 movw %D,(%A)
-leaw $FINISH-9e33dce4-828b-4f61-9d17-f65b14631b86,%A
+leaw $FINISH-f3420f86-96af-47c1-9f8d-77c1432e63a2,%A
 jmp
 nop
-FINISH-9e33dce4-828b-4f61-9d17-f65b14631b86:
+FINISH-f3420f86-96af-47c1-9f8d-77c1432e63a2:
+; 4 - Goto Condicional
+leaw $SP, %A
+movw (%A), %D
+decw %D
+movw %D, (%A)
+movw (%A), %S
+movw %S, %A
+movw (%A), %D
+notw %D
+leaw $IF1, %A
+je %D
+nop
+; Label (marcador)
+ELSE1:
 ; 5 - PUSH constant 3
 leaw $0, %A
 movw (%A), %D
@@ -78,6 +92,8 @@ movw %S, (%A)
 incw %D
 leaw $SP,%A
 movw %D, (%A)
+; Label (marcador)
+IF1:
 ; 6 - POP temp 0
 leaw $0,%A 
 movw (%A),%D 
@@ -120,7 +136,7 @@ movw (%A),%D
 decw %A
 movw (%A),%S
 subw %S, %D, %S
-leaw $VERDADE-2b7e9dc5-0dbb-444a-972c-65d65456238a,%A
+leaw $VERDADE-5291b985-6691-4fdd-bf1d-9c72c2e3490f,%A
 je %S
 nop
 movw $0,%D
@@ -133,10 +149,10 @@ movw %A, %D
 incw %D
 leaw $SP,%A
 movw %D,(%A)
-leaw $FINISH-2b7e9dc5-0dbb-444a-972c-65d65456238a,%A
+leaw $FINISH-5291b985-6691-4fdd-bf1d-9c72c2e3490f,%A
 jmp
 nop
-VERDADE-2b7e9dc5-0dbb-444a-972c-65d65456238a:
+VERDADE-5291b985-6691-4fdd-bf1d-9c72c2e3490f:
 leaw $131071,%A
 movw %A,%D
 leaw $SP,%A
@@ -148,10 +164,24 @@ movw %A, %D
 incw %D
 leaw $SP,%A
 movw %D,(%A)
-leaw $FINISH-2b7e9dc5-0dbb-444a-972c-65d65456238a,%A
+leaw $FINISH-5291b985-6691-4fdd-bf1d-9c72c2e3490f,%A
 jmp
 nop
-FINISH-2b7e9dc5-0dbb-444a-972c-65d65456238a:
+FINISH-5291b985-6691-4fdd-bf1d-9c72c2e3490f:
+; 10 - Goto Condicional
+leaw $SP, %A
+movw (%A), %D
+decw %D
+movw %D, (%A)
+movw (%A), %S
+movw %S, %A
+movw (%A), %D
+notw %D
+leaw $IF2, %A
+je %D
+nop
+; Label (marcador)
+ELSE2:
 ; 11 - PUSH constant 2
 leaw $0, %A
 movw (%A), %D
@@ -176,4 +206,6 @@ movw %A,%S
 leaw $1,%A
 addw %S,%A,%A
 movw %D,(%A)
+; Label (marcador)
+IF2:
 ; End

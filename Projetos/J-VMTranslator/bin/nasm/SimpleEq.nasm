@@ -6,7 +6,7 @@ movw (%A),%D
 decw %A
 movw (%A),%S
 subw %S, %D, %S
-leaw $VERDADE-b15bbce0-29b9-44ab-b93a-7ce50e320ea8,%A
+leaw $VERDADE-0444b1f9-1cbe-4ba0-8caa-da20584dd4cf,%A
 je %S
 nop
 movw $0,%D
@@ -19,10 +19,10 @@ movw %A, %D
 incw %D
 leaw $SP,%A
 movw %D,(%A)
-leaw $FINISH-b15bbce0-29b9-44ab-b93a-7ce50e320ea8,%A
+leaw $FINISH-0444b1f9-1cbe-4ba0-8caa-da20584dd4cf,%A
 jmp
 nop
-VERDADE-b15bbce0-29b9-44ab-b93a-7ce50e320ea8:
+VERDADE-0444b1f9-1cbe-4ba0-8caa-da20584dd4cf:
 leaw $131071,%A
 movw %A,%D
 leaw $SP,%A
@@ -34,8 +34,8 @@ movw %A, %D
 incw %D
 leaw $SP,%A
 movw %D,(%A)
-leaw $FINISH-b15bbce0-29b9-44ab-b93a-7ce50e320ea8,%A
+leaw $FINISH-0444b1f9-1cbe-4ba0-8caa-da20584dd4cf,%A
 jmp
 nop
-FINISH-b15bbce0-29b9-44ab-b93a-7ce50e320ea8:
+FINISH-0444b1f9-1cbe-4ba0-8caa-da20584dd4cf:
 ; End

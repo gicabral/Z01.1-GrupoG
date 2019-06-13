@@ -36,4 +36,10 @@ movw %A,%S
 leaw $1,%A
 addw %S,%A,%A
 movw %D,(%A)
+; Label (marcador)
+while:
+; 5 - Goto Incondicional
+leaw $while, %A
+jmp
+nop
 ; End

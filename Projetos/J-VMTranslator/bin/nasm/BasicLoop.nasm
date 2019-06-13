@@ -46,6 +46,8 @@ movw %A,%S
 leaw $1,%A
 addw %S,%A,%A
 movw %D,(%A)
+; Label (marcador)
+LOOP_START:
 ; 4 - PUSH temp 0
 leaw $5,%A
 movw %A,%D
@@ -79,7 +81,7 @@ movw (%A),%D
 decw %A
 movw (%A),%S
 subw %S, %D, %S
-leaw $VERDADE-b68de3d5-5f9b-4630-b1e3-4cab00e33909,%A
+leaw $VERDADE-d08cfc27-eade-4da3-bf46-566b7f2c34d3,%A
 je %S
 nop
 movw $0,%D
@@ -92,10 +94,10 @@ movw %A, %D
 incw %D
 leaw $SP,%A
 movw %D,(%A)
-leaw $FINISH-b68de3d5-5f9b-4630-b1e3-4cab00e33909,%A
+leaw $FINISH-d08cfc27-eade-4da3-bf46-566b7f2c34d3,%A
 jmp
 nop
-VERDADE-b68de3d5-5f9b-4630-b1e3-4cab00e33909:
+VERDADE-d08cfc27-eade-4da3-bf46-566b7f2c34d3:
 leaw $131071,%A
 movw %A,%D
 leaw $SP,%A
@@ -107,10 +109,22 @@ movw %A, %D
 incw %D
 leaw $SP,%A
 movw %D,(%A)
-leaw $FINISH-b68de3d5-5f9b-4630-b1e3-4cab00e33909,%A
+leaw $FINISH-d08cfc27-eade-4da3-bf46-566b7f2c34d3,%A
 jmp
 nop
-FINISH-b68de3d5-5f9b-4630-b1e3-4cab00e33909:
+FINISH-d08cfc27-eade-4da3-bf46-566b7f2c34d3:
+; 7 - Goto Condicional
+leaw $SP, %A
+movw (%A), %D
+decw %D
+movw %D, (%A)
+movw (%A), %S
+movw %S, %A
+movw (%A), %D
+notw %D
+leaw $END, %A
+je %D
+nop
 ; 8 - PUSH temp 0
 leaw $5,%A
 movw %A,%D
@@ -220,4 +234,10 @@ movw %A,%S
 leaw $1,%A
 addw %S,%A,%A
 movw %D,(%A)
+; 16 - Goto Incondicional
+leaw $LOOP_START, %A
+jmp
+nop
+; Label (marcador)
+END:
 ; End

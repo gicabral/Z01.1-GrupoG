@@ -57,7 +57,31 @@ incw %D
 leaw $SP,%A
 movw %D, (%A)
 ; 5 - POP argument 2
+leaw $0, %A
+movw (%A), %D
+decw %D
+movw %D, (%A)
+movw %D, %A
+movw (%A), %S
+leaw $2, %A
+movw (%A), %D
+leaw $2,%A
+addw %A, %D, %D
+movw %D, %A
+movw %S, (%A)
 ; 6 - POP argument 1
+leaw $0, %A
+movw (%A), %D
+decw %D
+movw %D, (%A)
+movw %D, %A
+movw (%A), %S
+leaw $2, %A
+movw (%A), %D
+leaw $1,%A
+addw %A, %D, %D
+movw %D, %A
+movw %S, (%A)
 ; 7 - PUSH constant 36
 leaw $0, %A
 movw (%A), %D
@@ -195,6 +219,20 @@ incw %D
 leaw $SP,%A
 movw %D,(%A)
 ; 18 - PUSH argument 1
+leaw $2,%A
+movw (%A),%D
+leaw $1,%A
+addw %D,%A,%S
+movw %S,%A
+movw (%A),%S
+leaw $0,%A
+movw (%A),%D
+movw %D,%A 
+movw %S,(%A)
+incw %A
+movw %A,%D
+leaw $0,%A
+movw %D,(%A)
 ; 19 - SUB
 leaw $SP,%A
 movw (%A),%A

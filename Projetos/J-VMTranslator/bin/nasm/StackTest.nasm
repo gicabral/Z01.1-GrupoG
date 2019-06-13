@@ -26,7 +26,7 @@ movw (%A),%D
 decw %A
 movw (%A),%S
 subw %S, %D, %S
-leaw $VERDADE-39c8f71c-c368-497f-9e61-5d0143ca640d,%A
+leaw $VERDADE-d49fca25-5032-43dc-831e-96aeef322112,%A
 je %S
 nop
 movw $0,%D
@@ -39,10 +39,10 @@ movw %A, %D
 incw %D
 leaw $SP,%A
 movw %D,(%A)
-leaw $FINISH-39c8f71c-c368-497f-9e61-5d0143ca640d,%A
+leaw $FINISH-d49fca25-5032-43dc-831e-96aeef322112,%A
 jmp
 nop
-VERDADE-39c8f71c-c368-497f-9e61-5d0143ca640d:
+VERDADE-d49fca25-5032-43dc-831e-96aeef322112:
 leaw $131071,%A
 movw %A,%D
 leaw $SP,%A
@@ -54,10 +54,10 @@ movw %A, %D
 incw %D
 leaw $SP,%A
 movw %D,(%A)
-leaw $FINISH-39c8f71c-c368-497f-9e61-5d0143ca640d,%A
+leaw $FINISH-d49fca25-5032-43dc-831e-96aeef322112,%A
 jmp
 nop
-FINISH-39c8f71c-c368-497f-9e61-5d0143ca640d:
+FINISH-d49fca25-5032-43dc-831e-96aeef322112:
 ; 3 - PUSH constant 17
 leaw $0, %A
 movw (%A), %D
@@ -86,7 +86,7 @@ movw (%A),%D
 decw %A
 movw (%A),%S
 subw %S, %D, %S
-leaw $VERDADE-02b19acf-f7bc-45e7-9485-cdf429da3e96,%A
+leaw $VERDADE-66d85cb0-de31-4163-930c-efa17bd79bf7,%A
 je %S
 nop
 movw $0,%D
@@ -99,10 +99,10 @@ movw %A, %D
 incw %D
 leaw $SP,%A
 movw %D,(%A)
-leaw $FINISH-02b19acf-f7bc-45e7-9485-cdf429da3e96,%A
+leaw $FINISH-66d85cb0-de31-4163-930c-efa17bd79bf7,%A
 jmp
 nop
-VERDADE-02b19acf-f7bc-45e7-9485-cdf429da3e96:
+VERDADE-66d85cb0-de31-4163-930c-efa17bd79bf7:
 leaw $131071,%A
 movw %A,%D
 leaw $SP,%A
@@ -114,10 +114,10 @@ movw %A, %D
 incw %D
 leaw $SP,%A
 movw %D,(%A)
-leaw $FINISH-02b19acf-f7bc-45e7-9485-cdf429da3e96,%A
+leaw $FINISH-66d85cb0-de31-4163-930c-efa17bd79bf7,%A
 jmp
 nop
-FINISH-02b19acf-f7bc-45e7-9485-cdf429da3e96:
+FINISH-66d85cb0-de31-4163-930c-efa17bd79bf7:
 ; 6 - PUSH constant 16
 leaw $0, %A
 movw (%A), %D
@@ -146,7 +146,7 @@ movw (%A),%D
 decw %A
 movw (%A),%S
 subw %S, %D, %S
-leaw $VERDADE-708cef44-4428-4e99-a598-4fccf3830e10,%A
+leaw $VERDADE-1795efd9-7273-41c5-9aec-c70fac21a85c,%A
 je %S
 nop
 movw $0,%D
@@ -159,10 +159,10 @@ movw %A, %D
 incw %D
 leaw $SP,%A
 movw %D,(%A)
-leaw $FINISH-708cef44-4428-4e99-a598-4fccf3830e10,%A
+leaw $FINISH-1795efd9-7273-41c5-9aec-c70fac21a85c,%A
 jmp
 nop
-VERDADE-708cef44-4428-4e99-a598-4fccf3830e10:
+VERDADE-1795efd9-7273-41c5-9aec-c70fac21a85c:
 leaw $131071,%A
 movw %A,%D
 leaw $SP,%A
@@ -174,10 +174,10 @@ movw %A, %D
 incw %D
 leaw $SP,%A
 movw %D,(%A)
-leaw $FINISH-708cef44-4428-4e99-a598-4fccf3830e10,%A
+leaw $FINISH-1795efd9-7273-41c5-9aec-c70fac21a85c,%A
 jmp
 nop
-FINISH-708cef44-4428-4e99-a598-4fccf3830e10:
+FINISH-1795efd9-7273-41c5-9aec-c70fac21a85c:
 ; 9 - PUSH constant 892
 leaw $0, %A
 movw (%A), %D
@@ -206,7 +206,7 @@ movw (%A),%D
 decw %A
 movw (%A),%S
 subw %S, %D, %S
-leaw $VERDADE-3a1023a0-2eaa-49e6-b5fe-87609f49273a,%A
+leaw $VERDADE-e5c9d6de-4ac5-47cd-9128-b91ccbe422ce,%A
 jl %S
 nop
 movw $0,%D
@@ -219,10 +219,10 @@ movw %A, %D
 incw %D
 leaw $SP,%A
 movw %D,(%A)
-leaw $FINISH-3a1023a0-2eaa-49e6-b5fe-87609f49273a,%A
+leaw $FINISH-e5c9d6de-4ac5-47cd-9128-b91ccbe422ce,%A
 jmp
 nop
-VERDADE-3a1023a0-2eaa-49e6-b5fe-87609f49273a:
+VERDADE-e5c9d6de-4ac5-47cd-9128-b91ccbe422ce:
 leaw $131071,%A
 movw %A,%D
 leaw $SP,%A
@@ -234,10 +234,10 @@ movw %A, %D
 incw %D
 leaw $SP,%A
 movw %D,(%A)
-leaw $FINISH-3a1023a0-2eaa-49e6-b5fe-87609f49273a,%A
+leaw $FINISH-e5c9d6de-4ac5-47cd-9128-b91ccbe422ce,%A
 jmp
 nop
-FINISH-3a1023a0-2eaa-49e6-b5fe-87609f49273a:
+FINISH-e5c9d6de-4ac5-47cd-9128-b91ccbe422ce:
 ; 12 - PUSH constant 891
 leaw $0, %A
 movw (%A), %D
@@ -266,7 +266,7 @@ movw (%A),%D
 decw %A
 movw (%A),%S
 subw %S, %D, %S
-leaw $VERDADE-ee55667e-08dd-4983-af19-1e2019c216f9,%A
+leaw $VERDADE-be869c4f-d678-4318-b4e4-42a7585f25f5,%A
 jl %S
 nop
 movw $0,%D
@@ -279,10 +279,10 @@ movw %A, %D
 incw %D
 leaw $SP,%A
 movw %D,(%A)
-leaw $FINISH-ee55667e-08dd-4983-af19-1e2019c216f9,%A
+leaw $FINISH-be869c4f-d678-4318-b4e4-42a7585f25f5,%A
 jmp
 nop
-VERDADE-ee55667e-08dd-4983-af19-1e2019c216f9:
+VERDADE-be869c4f-d678-4318-b4e4-42a7585f25f5:
 leaw $131071,%A
 movw %A,%D
 leaw $SP,%A
@@ -294,10 +294,10 @@ movw %A, %D
 incw %D
 leaw $SP,%A
 movw %D,(%A)
-leaw $FINISH-ee55667e-08dd-4983-af19-1e2019c216f9,%A
+leaw $FINISH-be869c4f-d678-4318-b4e4-42a7585f25f5,%A
 jmp
 nop
-FINISH-ee55667e-08dd-4983-af19-1e2019c216f9:
+FINISH-be869c4f-d678-4318-b4e4-42a7585f25f5:
 ; 15 - PUSH constant 891
 leaw $0, %A
 movw (%A), %D
@@ -326,7 +326,7 @@ movw (%A),%D
 decw %A
 movw (%A),%S
 subw %S, %D, %S
-leaw $VERDADE-f9e0fcf5-78bc-4679-96bb-af10c8937f95,%A
+leaw $VERDADE-d5f571f2-3c0c-461e-8767-89e6bd6a9c29,%A
 jl %S
 nop
 movw $0,%D
@@ -339,10 +339,10 @@ movw %A, %D
 incw %D
 leaw $SP,%A
 movw %D,(%A)
-leaw $FINISH-f9e0fcf5-78bc-4679-96bb-af10c8937f95,%A
+leaw $FINISH-d5f571f2-3c0c-461e-8767-89e6bd6a9c29,%A
 jmp
 nop
-VERDADE-f9e0fcf5-78bc-4679-96bb-af10c8937f95:
+VERDADE-d5f571f2-3c0c-461e-8767-89e6bd6a9c29:
 leaw $131071,%A
 movw %A,%D
 leaw $SP,%A
@@ -354,10 +354,10 @@ movw %A, %D
 incw %D
 leaw $SP,%A
 movw %D,(%A)
-leaw $FINISH-f9e0fcf5-78bc-4679-96bb-af10c8937f95,%A
+leaw $FINISH-d5f571f2-3c0c-461e-8767-89e6bd6a9c29,%A
 jmp
 nop
-FINISH-f9e0fcf5-78bc-4679-96bb-af10c8937f95:
+FINISH-d5f571f2-3c0c-461e-8767-89e6bd6a9c29:
 ; 18 - PUSH constant 32767
 leaw $0, %A
 movw (%A), %D
@@ -386,7 +386,7 @@ movw (%A),%D
 decw %A
 movw (%A),%S
 subw %S, %D, %S
-leaw $VERDADE-0cc5c204-40dc-44fa-be5d-2c9807f77a1d,%A
+leaw $VERDADE-db4bb8b4-ad74-4c2e-a52c-cd7b8d6fe1e2,%A
 jg %S
 nop
 movw $0,%D
@@ -399,10 +399,10 @@ movw %A, %D
 incw %D
 leaw $SP,%A
 movw %D,(%A)
-leaw $FINISH-0cc5c204-40dc-44fa-be5d-2c9807f77a1d,%A
+leaw $FINISH-db4bb8b4-ad74-4c2e-a52c-cd7b8d6fe1e2,%A
 jmp
 nop
-VERDADE-0cc5c204-40dc-44fa-be5d-2c9807f77a1d:
+VERDADE-db4bb8b4-ad74-4c2e-a52c-cd7b8d6fe1e2:
 leaw $131071,%A
 movw %A,%D
 leaw $SP,%A
@@ -414,10 +414,10 @@ movw %A, %D
 incw %D
 leaw $SP,%A
 movw %D,(%A)
-leaw $FINISH-0cc5c204-40dc-44fa-be5d-2c9807f77a1d,%A
+leaw $FINISH-db4bb8b4-ad74-4c2e-a52c-cd7b8d6fe1e2,%A
 jmp
 nop
-FINISH-0cc5c204-40dc-44fa-be5d-2c9807f77a1d:
+FINISH-db4bb8b4-ad74-4c2e-a52c-cd7b8d6fe1e2:
 ; 21 - PUSH constant 32766
 leaw $0, %A
 movw (%A), %D
@@ -446,7 +446,7 @@ movw (%A),%D
 decw %A
 movw (%A),%S
 subw %S, %D, %S
-leaw $VERDADE-719a43c8-13d1-42fd-9d27-3bf6c8859047,%A
+leaw $VERDADE-bc663df7-bd90-4e82-92bf-7c0d683836c0,%A
 jg %S
 nop
 movw $0,%D
@@ -459,10 +459,10 @@ movw %A, %D
 incw %D
 leaw $SP,%A
 movw %D,(%A)
-leaw $FINISH-719a43c8-13d1-42fd-9d27-3bf6c8859047,%A
+leaw $FINISH-bc663df7-bd90-4e82-92bf-7c0d683836c0,%A
 jmp
 nop
-VERDADE-719a43c8-13d1-42fd-9d27-3bf6c8859047:
+VERDADE-bc663df7-bd90-4e82-92bf-7c0d683836c0:
 leaw $131071,%A
 movw %A,%D
 leaw $SP,%A
@@ -474,10 +474,10 @@ movw %A, %D
 incw %D
 leaw $SP,%A
 movw %D,(%A)
-leaw $FINISH-719a43c8-13d1-42fd-9d27-3bf6c8859047,%A
+leaw $FINISH-bc663df7-bd90-4e82-92bf-7c0d683836c0,%A
 jmp
 nop
-FINISH-719a43c8-13d1-42fd-9d27-3bf6c8859047:
+FINISH-bc663df7-bd90-4e82-92bf-7c0d683836c0:
 ; 24 - PUSH constant 32766
 leaw $0, %A
 movw (%A), %D
@@ -506,7 +506,7 @@ movw (%A),%D
 decw %A
 movw (%A),%S
 subw %S, %D, %S
-leaw $VERDADE-fef85697-6cbb-41ad-89e1-859c9fa208cc,%A
+leaw $VERDADE-f9c6fea0-c4ef-4785-9ba9-e54a9c5bbe47,%A
 jg %S
 nop
 movw $0,%D
@@ -519,10 +519,10 @@ movw %A, %D
 incw %D
 leaw $SP,%A
 movw %D,(%A)
-leaw $FINISH-fef85697-6cbb-41ad-89e1-859c9fa208cc,%A
+leaw $FINISH-f9c6fea0-c4ef-4785-9ba9-e54a9c5bbe47,%A
 jmp
 nop
-VERDADE-fef85697-6cbb-41ad-89e1-859c9fa208cc:
+VERDADE-f9c6fea0-c4ef-4785-9ba9-e54a9c5bbe47:
 leaw $131071,%A
 movw %A,%D
 leaw $SP,%A
@@ -534,10 +534,10 @@ movw %A, %D
 incw %D
 leaw $SP,%A
 movw %D,(%A)
-leaw $FINISH-fef85697-6cbb-41ad-89e1-859c9fa208cc,%A
+leaw $FINISH-f9c6fea0-c4ef-4785-9ba9-e54a9c5bbe47,%A
 jmp
 nop
-FINISH-fef85697-6cbb-41ad-89e1-859c9fa208cc:
+FINISH-f9c6fea0-c4ef-4785-9ba9-e54a9c5bbe47:
 ; 27 - PUSH constant 57
 leaw $0, %A
 movw (%A), %D
