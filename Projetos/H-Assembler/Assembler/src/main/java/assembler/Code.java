@@ -195,6 +195,8 @@ public class Code {
                         return "101000111";
                     case "$1%A":
                         return "010110010";
+                    case "%S(%A)":
+                        return "011010011";
                     default:
                         return "000000000";
                 }

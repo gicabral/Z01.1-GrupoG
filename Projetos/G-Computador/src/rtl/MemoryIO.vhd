@@ -29,36 +29,33 @@ entity MemoryIO is
      SW  : in std_logic_vector(9 downto 0);
      LED : OUT std_logic_vector(9 downto 0)
 
-
     );
 end entity;
 
 
 ARCHITECTURE logic OF MemoryIO IS
 
-component Screen is
+  component Screen is
+    PORT(
+      -- Sistema
+      CLK_FAST : IN  STD_LOGIC;
+      CLK_SLOW : IN  STD_LOGIC;
+      RST      : IN  STD_LOGIC;
 
-   PORT(
-        --Display
-        INPUT        : IN  STD_LOGIC_VECTOR(15 downto 0);
-        LOAD         : IN  STD_LOGIC;
-        ADDRESS      : IN  STD_LOGIC_VECTOR(13 downto 0);
-        LCD_INIT_OK  : OUT STD_LOGIC;
+      -- interface
+      INPUT        : IN STD_LOGIC_VECTOR(15 downto 0); -- vetor de pxs
+      LOAD         : IN  STD_LOGIC;                    -- grava dado
+      ADDRESS      : IN STD_LOGIC_VECTOR(13 downto 0); -- endereço
 
-        -- Sistema
-        CLK_SLOW     : IN  STD_LOGIC;
-        CLK_FAST     : IN  STD_LOGIC;
-        RST          : IN  STD_LOGIC;
-        -- LCD EXTERNAL I/OS
-        LCD_CS_N     : OUT   STD_LOGIC;
-        LCD_D        : INOUT STD_LOGIC_VECTOR(15 downto 0);
-        LCD_RD_N     : OUT   STD_LOGIC;
-        LCD_RESET_N  : OUT   STD_LOGIC;
-        LCD_RS       : OUT   STD_LOGIC; -- (DCx) 0 : reg, 1: command
-        LCD_WR_N     : OUT   STD_LOGIC
-       );
-end component;
-
+      -- LCD EXTERNAL I/OS
+      LCD_INIT_OK  : OUT STD_LOGIC;
+      LCD_CS_N     : OUT   STD_LOGIC;
+      LCD_D        : INOUT STD_LOGIC_VECTOR(15 downto 0);
+      LCD_RD_N     : OUT   STD_LOGIC;
+      LCD_RESET_N  : OUT   STD_LOGIC;
+      LCD_RS       : OUT   STD_LOGIC;
+      LCD_WR_N     : OUT   STD_LOGIC);
+  end component;
 
   component RAM16K is
     port  (
@@ -122,7 +119,7 @@ end component;
 
 --    RAM: RAM16K  PORT MAP(
 --         clock    => CLK_FAST,
---         address  => 
+--         address  =>
 --         data     =>
 --         wren     =>
 --         q        =>
@@ -134,46 +131,29 @@ signal  mux_in1, mux_n1, mux_n2, ram16_out, sw_in2 :STD_LOGIC_VECTOR(15 downto 0
 signal  seletormux : STD_LOGIC_VECTOR(1 downto 0);
 signal seletordmux : STD_LOGIC_VECTOR(1 downto 0);
 
-
-signal S : STD_LOGIC_VECTOR(0 to 6);
-
 begin
   
   seletordmux <= "00" when ADDRESS <= "011111111111111" else
     "01" when ADDRESS >= "100000000000000" and ADDRESS <= "101001010111111" else
-    "10" when ADDRESS = "101001011000000" ;
+    "10" when ADDRESS = "101001011000000" else
+    "11";
 
 
     seletormux <= "00" when (ADDRESS = "101001011000001") else "01";
 
     dmux: DMux4Way port map (LOAD, seletordmux, dmux_out1, dmux_out2, dmux_out3, dmux_n);
 
-    ram: RAM16K port map (CLK_FAST, ADDRESS(13 downto 0), INPUT(15 downto 0), dmux_out1, mux_in1);
+    ram16: RAM16K port map (CLK_FAST, ADDRESS(13 downto 0), INPUT(15 downto 0), dmux_out1, mux_in1);
 
     register197: Register16 port map (CLK_SLOW, INPUT(15 downto 0), dmux_out3, SaidaReg);
 
-    --screenport: Screen port map (RST, CLK_FAST, CLK_SLOW, INPUT(15 downto 0), dmux_out2, ADDRESS(13 downto 0), LCD_INIT_OK, LCD_CS_N,
-    --LCD_D, LCD_RD_N, LCD_RESET_N, LCD_RS, LCD_WR_N);
-     DISPLAY: Screen  port map (
-          RST         => RST,
-          CLK_FAST    => CLK_FAST,
-          CLK_SLOW    => CLK_SLOW,
-          INPUT       => INPUT,
-          LOAD        => dmux_out2,
-          ADDRESS     => ADDRESS(13 downto 0),
-          LCD_INIT_OK => LCD_INIT_OK,
-          LCD_CS_N    => LCD_CS_N ,
-          LCD_D       => LCD_D,
-          LCD_RD_N    => LCD_RD_N,
-          LCD_RESET_N => LCD_RESET_N,
-          LCD_RS      => LCD_RS,
-          LCD_WR_N    => LCD_WR_N
-    );
+    screenport: Screen port map (CLK_FAST, CLK_SLOW, RST, INPUT(15 downto 0), dmux_out2, ADDRESS(13 downto 0), LCD_INIT_OK, LCD_CS_N,
+    LCD_D, LCD_RD_N, LCD_RESET_N, LCD_RS, LCD_WR_N);
 
     mux: Mux4Way16 port map (seletormux, sw_in2, mux_in1, mux_n1, mux_n2, OUTPUT );
 
-
   LED(9 downto 0) <= SaidaReg(9 downto 0);
-  
+  sw_in2(9 downto 0) <= SW(9 downto 0);
+
 
 END logic;

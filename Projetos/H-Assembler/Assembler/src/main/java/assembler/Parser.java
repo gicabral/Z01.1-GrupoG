@@ -52,7 +52,7 @@ public class Parser {
         // usar o fileReader.readLine();
         String  str = fileReader.readLine();
         while( str !=null) {
-            if (str.startsWith(";") == false && !str.trim().equals("")){
+            if (str.trim().startsWith(";") == false && !str.trim().equals("")){
                 currentCommand = str.replaceAll(";.*$", "").trim();
                 return(true);
             }
@@ -133,12 +133,7 @@ public class Parser {
      * @return um vetor de string contento os tokens da instrução (as partes do comando).
      */
     public String[] instruction(String command) {
-
-        command = command.trim();
-        command = command.replaceAll(",", "");
-        String commands[] = command.split(" ");
-
-        return commands;
+        return command.split("[ ,]+");
         
 
     }
