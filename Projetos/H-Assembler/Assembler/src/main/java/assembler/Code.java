@@ -188,15 +188,16 @@ public class Code {
 
         if (mnemnonic.length == 4) {
             if (mnemnonic[0].equals("subw")) {
-                switch (mnemnonic[2] + mnemnonic[3]) {
-                    case "(%A)%A":
-                        return "010010011";
+                switch (mnemnonic[1] + mnemnonic[2]) {
                     case "%S%A":
                         return "101000111";
                     case "$1%A":
                         return "010110010";
                     case "%S(%A)":
                         return "011010011";
+                    case "D(%A)":
+
+
                     default:
                         return "000000000";
                 }

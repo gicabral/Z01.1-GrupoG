@@ -143,11 +143,11 @@ begin
 
     dmux: DMux4Way port map (LOAD, seletordmux, dmux_out1, dmux_out2, dmux_out3, dmux_n);
 
-    ram16: RAM16K port map (CLK_FAST, ADDRESS(13 downto 0), INPUT(15 downto 0), dmux_out1, mux_in1);
+    RAM: RAM16K port map (CLK_FAST, ADDRESS(13 downto 0), INPUT(15 downto 0), dmux_out1, mux_in1);
 
     register197: Register16 port map (CLK_SLOW, INPUT(15 downto 0), dmux_out3, SaidaReg);
 
-    screenport: Screen port map (CLK_FAST, CLK_SLOW, RST, INPUT(15 downto 0), dmux_out2, ADDRESS(13 downto 0), LCD_INIT_OK, LCD_CS_N,
+    DISPLAY: Screen port map (CLK_FAST, CLK_SLOW, RST, INPUT(15 downto 0), dmux_out2, ADDRESS(13 downto 0), LCD_INIT_OK, LCD_CS_N,
     LCD_D, LCD_RD_N, LCD_RESET_N, LCD_RS, LCD_WR_N);
 
     mux: Mux4Way16 port map (seletormux, sw_in2, mux_in1, mux_n1, mux_n2, OUTPUT );
