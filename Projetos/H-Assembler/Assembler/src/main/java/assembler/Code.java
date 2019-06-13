@@ -101,11 +101,21 @@ public class Code {
          * @return Opcode (String de 7 bits) com código em linguagem de máquina para a instrução.
          */
     public static String comp(String[] mnemnonic) {
-        if (mnemnonic.length == 1) {
-                    return "000001100";
-                }
+        if (mnemnonic[0].equals("nop")) {
+            return "000101010";
+        }
 
-                if (mnemnonic.length == 2) {
+        if (mnemnonic[0].equals("jmp")) {
+            return "000001100";
+        }
+
+        if (mnemnonic.length == 1) {
+            return "000101010";
+
+        }
+
+
+        if (mnemnonic.length == 2) {
             if (mnemnonic[0].equals("incw")) {
                 switch (mnemnonic[1]) {
                     case "%A":
@@ -144,6 +154,10 @@ public class Code {
                         return "000001110";
                     case "%A":
                         return "000110010";
+                    case "(%A)":
+                        return "010110010";
+                    case "%S":
+                        return "001001110";
                     default:
                         return "000000000";
                 }
@@ -154,7 +168,7 @@ public class Code {
                     case "%S":
                         return "001001100";
                     default:
-                        return "000000000";
+                        return "000101010";
                 }
             }
         }
@@ -190,14 +204,33 @@ public class Code {
             if (mnemnonic[0].equals("subw")) {
                 switch (mnemnonic[1] + mnemnonic[2]) {
                     case "%S%A":
-                        return "101000111";
-                    case "$1%A":
-                        return "010110010";
+                        return "001010011";
+                    case "%A$1":
+                        return "000110010";
                     case "%S(%A)":
                         return "011010011";
-                    case "D(%A)":
-
-
+                    case "%D(%A)":
+                        return "010010011";
+                    case "%D$1":
+                        return "000001110";
+                    case "%D%A":
+                        return "000010011";
+                    case "%A%D":
+                        return "000000111";
+                    case "%A%S":
+                        return "001000111";
+                    case "(%A)%D":
+                        return "010000111";
+                    case "(%A)%S":
+                        return "011000111";
+                    case "%S%D":
+                        return "101010011";
+                    case "%D%S":
+                        return "101000111";
+                    case "(%A)$1":
+                        return "010110010";
+                    case "%S$1":
+                        return "001001110";
                     default:
                         return "000000000";
                 }
@@ -208,6 +241,10 @@ public class Code {
                         return "101000010";
                     case "%D%S":
                         return "101000010";
+                    case "%D(%A)":
+                        return "010000010";
+                    case "%S(%A)":
+                        return "011000010";
                     case "%A%D":
                         return "000000010";
                     case "(%A)%D":

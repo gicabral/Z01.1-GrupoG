@@ -122,8 +122,8 @@ public class CodeTest  {
     @Test
     public void testCode_Computation() {
 		try {
-		
-		
+
+			assertTrue("nop",Code.comp(new String[] {"nop"}).equals("000101010"));
             assertTrue("movw %A %D",Code.comp(new String[] {"movw","%A","%D"}).equals("000110000"));
             assertTrue("movw %S %D",Code.comp(new String[] {"movw","%S","%A"}).equals("001001100"));
             assertTrue("movw %S %A",Code.comp(new String[] {"movw","%S","%A"}).equals("001001100"));
@@ -169,6 +169,7 @@ public class CodeTest  {
             assertTrue("jge %D",Code.comp(new String[] {"jge", "%D"}).equals("000001100"));
             assertTrue("jl %S",Code.comp(new String[] {"jl", "%S"}).equals("001001100"));
             assertTrue("jle %S",Code.comp(new String[] {"jle", "%S"}).equals("001001100"));
+
 		} catch(Exception e) {
 		  	e.printStackTrace();
 		}
